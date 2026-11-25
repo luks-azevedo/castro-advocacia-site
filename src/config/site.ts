@@ -14,7 +14,7 @@ export const site: SiteConfig = {
   description:
     'Advocacia especializada em Direito Civil, do Consumidor, Imobiliário e do Trabalho. Atendimento presencial em Belo Horizonte e Conselheiro Lafaiete e online em todo o Brasil.',
   segment: 'Advocacia',
-  domain: '',
+  domain: 'https://castroadvocacia.apresenta.workers.dev',
   logo: {
     src: '',
     alt: 'Castro Advocacia',
