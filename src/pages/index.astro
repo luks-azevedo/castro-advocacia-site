@@ -1,83 +1,75 @@
 ---
-/**
- * Página inicial — demonstra várias combinações de seções.
- * Remova, reordene ou troque variantes/tons conforme o projeto.
- */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import ServicesSection from '../components/sections/ServicesSection.astro';
 import AboutSection from '../components/sections/AboutSection.astro';
 import BenefitsSection from '../components/sections/BenefitsSection.astro';
-import PortfolioSection from '../components/sections/PortfolioSection.astro';
-import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
 import CTASection from '../components/sections/CTASection.astro';
-import { images, services, benefits, process, portfolio, testimonials, faq } from '../data/demo';
+import { photos, areas, howItWorks, faq } from '../data/castro';
+import { primaryContactHref } from '../lib/contact';
 
-const servicesWithLinks = services.map((s) => ({ ...s, href: `/servicos#${s.id}` }));
+const contactHref = primaryContactHref();
+const homeAreas = areas.filter((a) => a.id !== 'advogados').map((a) => ({ ...a, href: `/areas#${a.id}` }));
 ---
 
 <BaseLayout>
   <Hero
     variant="split"
-    eyebrow="Consultoria em gestão e finanças"
-    title="Decisões mais claras para pequenas empresas."
-    description="Organizamos números, rotinas e prioridades para que a gestão acompanhe o negócio com segurança."
-    primaryCta={{ label: 'Agendar uma conversa', href: '/contato' }}
-    secondaryCta={{ label: 'Conhecer os serviços', href: '/servicos' }}
-    image={images.hero}
-    imageIllustrative
-    highlights={['Atendimento presencial e online', 'Proposta personalizada']}
+    eyebrow="Advocacia Especializada"
+    title="Soluções jurídicas personalizadas e estratégicas."
+    description="Atuação em Direito Civil, do Consumidor, Imobiliário e do Trabalho. Atendimento presencial em Belo Horizonte e Conselheiro Lafaiete e online em todo o Brasil."
+    primaryCta={{ label: 'Agendar atendimento', href: contactHref }}
+    secondaryCta={{ label: 'Áreas de atuação', href: '/areas' }}
+    image={photos.hero}
+    highlights={['Presencial em BH e Lafaiete', 'Online em todo o Brasil']}
+    decor
   />
 
   <ServicesSection
     tone="surface"
-    eyebrow="Serviços"
+    eyebrow="Áreas de atuação"
     title="Como podemos ajudar"
-    description="Trabalhos com escopo definido, pensados para a realidade de empresas menores."
-    items={servicesWithLinks}
-    limit={3}
-    cta={{ label: 'Ver todos os serviços', href: '/servicos' }}
+    description="Orientação jurídica clara para as questões do dia a dia, com análise individual de cada caso."
+    items={homeAreas}
+    cta={{ label: 'Ver todas as áreas', href: '/areas' }}
   />
 
   <AboutSection
-    eyebrow="Sobre"
-    title="Gestão sem complicação."
+    eyebrow="O escritório"
+    title="Atendimento próximo, do primeiro contato ao acompanhamento."
     paragraphs={[
-      'A Viana Consultoria acompanha empresas que cresceram rápido e precisam organizar a casa antes do próximo passo.',
-      'O trabalho é feito junto com a equipe, com linguagem simples e foco no que pode ser aplicado no dia a dia.',
+      'A Castro Advocacia é conduzida pela advogada Carolina Araújo, com atuação em Direito Civil, do Consumidor, Imobiliário e do Trabalho.',
+      'Cada caso é analisado individualmente, com orientação clara sobre os caminhos possíveis e atenção às particularidades de cada cliente.',
     ]}
-    image={images.about}
-    imageIllustrative
-    cta={{ label: 'Conhecer a consultoria', href: '/sobre' }}
+    image={photos.about}
+    imagePosition="right"
+    cta={{ label: 'Conheça o escritório', href: '/sobre' }}
   />
-
-  <BenefitsSection tone="muted" eyebrow="Diferenciais" title="O que orienta o nosso trabalho" items={benefits} />
 
   <BenefitsSection
     id="como-funciona"
-    eyebrow="Como funciona"
-    title="Do primeiro contato ao acompanhamento"
-    items={process}
+    tone="muted"
+    eyebrow="Atendimento"
+    title="Como funciona"
+    items={howItWorks}
     variant="numbered"
   />
 
-  <PortfolioSection
-    tone="surface"
-    eyebrow="Projetos"
-    title="Tipos de trabalho que realizamos"
-    items={portfolio}
-    illustrative
+  <CTASection
+    variant="card"
+    title="Você só procura um advogado quando o problema já aconteceu?"
+    description="A consultoria jurídica existe para evitar que isso aconteça. Converse antes de assinar contratos ou tomar decisões importantes."
+    primaryCta={{ label: 'Falar com a advogada', href: contactHref }}
+    secondaryCta={{ label: 'Consultoria jurídica', href: '/areas#consultoria' }}
   />
 
-  <TestimonialsSection eyebrow="Depoimentos" title="O que dizem os clientes" items={testimonials} illustrative />
-
-  <FAQSection tone="muted" eyebrow="Dúvidas" title="Perguntas frequentes" items={faq} />
+  <FAQSection eyebrow="Dúvidas" title="Perguntas frequentes" items={faq} />
 
   <CTASection
-    title="Vamos conversar sobre a sua empresa?"
-    description="Uma primeira conversa, sem compromisso, para entender o momento do negócio."
-    primaryCta={{ label: 'Agendar conversa', href: '/contato' }}
-    secondaryCta={{ label: 'Ver serviços', href: '/servicos' }}
+    title="Precisa de orientação jurídica?"
+    description="Entre em contato e agende um atendimento presencial ou online."
+    primaryCta={{ label: 'Agendar atendimento', href: contactHref }}
+    secondaryCta={{ label: 'Outras formas de contato', href: '/contato' }}
   />
 </BaseLayout>

@@ -3,24 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
-import { faq } from '../data/demo';
+import { faq } from '../data/castro';
 ---
 
 <BaseLayout
   title="Contato"
-  description="Fale com a Viana Consultoria pelo formulário ou pelos canais de atendimento."
+  description="Agende um atendimento com a Castro Advocacia: presencial em Belo Horizonte e Conselheiro Lafaiete ou online em todo o Brasil."
 >
   <Hero
     variant="page"
     eyebrow="Contato"
-    title="Vamos conversar."
-    description="Conte um pouco sobre a sua empresa. Respondemos com os próximos passos."
+    title="Agende um atendimento"
+    description="Conte brevemente a sua situação. O retorno é feito pelo canal que você preferir."
   />
 
   <ContactSection
-    title="Canais de atendimento"
-    description="Prefere conversar agora? Use um dos canais abaixo."
+    title="Fale com o escritório"
+    description="Atendimento presencial em Belo Horizonte e Conselheiro Lafaiete e online em todo o Brasil."
   />
 
-  <FAQSection tone="muted" eyebrow="Antes de enviar" title="Dúvidas comuns" items={faq.slice(0, 3)} />
+  <FAQSection tone="muted" eyebrow="Dúvidas" title="Antes de entrar em contato" items={faq} />
 </BaseLayout>

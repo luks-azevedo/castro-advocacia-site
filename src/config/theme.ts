@@ -100,7 +100,41 @@ const moderno: Theme = {
   layout: { containerWidth: '1280px', sectionSpacing: ['4.5rem', '8rem'] },
 };
 
-export const themes = { editorial, clinica, moderno } as const;
+/**
+ * Castro Advocacia — identidade do Instagram @castro.adv_:
+ * vinho (#7A1243), ameixa profundo, off-white, serifada elegante + sem serifa limpa.
+ * Contraste: texto 15:1, muted 6.9:1, botão (branco/vinho) 10.5:1.
+ */
+const castro: Theme = {
+  name: 'castro',
+  colors: {
+    primary: '#7A1243',
+    primaryContrast: '#FFFFFF',
+    secondary: '#EDE6E9',
+    accent: '#7A1243',
+    background: '#F4F3F1',
+    surface: '#FFFFFF',
+    text: '#2B1420',
+    muted: '#5E5158',
+    border: '#E3DBDF',
+    inverted: '#3E0C24',
+    invertedText: '#F7EFF3',
+  },
+  fonts: {
+    heading: { name: 'Playfair Display', fallback: 'serif', weights: ['400 600'] },
+    body: { name: 'Inter', fallback: 'sans-serif', weights: ['300 600'] },
+  },
+  typography: {
+    headingWeight: 400,
+    headingTracking: '-0.01em',
+    headingLineHeight: 1.1,
+    baseSize: '1.0625rem',
+  },
+  radius: { control: '999px', card: '16px' },
+  layout: { containerWidth: '1200px', sectionSpacing: ['4.5rem', '7.5rem'] },
+};
 
-/** Tema ativo. Troque para `themes.clinica`, `themes.moderno` ou um preset próprio. */
-export const theme: Theme = themes.editorial;
+export const themes = { editorial, clinica, moderno, castro } as const;
+
+/** Tema ativo. */
+export const theme: Theme = themes.castro;

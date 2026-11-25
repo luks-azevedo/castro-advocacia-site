@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
+import BenefitsSection from '../components/sections/BenefitsSection.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import { areas, serviceFormats } from '../data/castro';
+import { primaryContactHref } from '../lib/contact';
+---
+
+<BaseLayout
+  title="Áreas de atuação"
+  description="Direito do Consumidor, Imobiliário, Civil e do Trabalho, serviços extrajudiciais, consultoria jurídica e serviços para advogados."
+>
+  <Hero
+    variant="page"
+    eyebrow="Áreas de atuação"
+    title="Orientação jurídica para as questões do dia a dia"
+    description="Conheça as áreas em que o escritório atua. Cada caso é analisado individualmente."
+  />
+
+  <ServicesSection id="areas-lista" title="Áreas" items={areas} variant="list" />
+
+  <BenefitsSection tone="muted" id="formatos" eyebrow="Formatos" title="Atendimento presencial e online" items={serviceFormats} />
+
+  <CTASection
+    title="Não encontrou a sua situação?"
+    description="Entre em contato e conte brevemente o seu caso."
+    primaryCta={{ label: 'Agendar atendimento', href: primaryContactHref() }}
+    secondaryCta={{ label: 'Página de contato', href: '/contato' }}
+  />
+</BaseLayout>

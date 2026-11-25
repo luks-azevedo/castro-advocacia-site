@@ -1,55 +1,91 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/sections/Hero.astro';
-import AboutSection from '../components/sections/AboutSection.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
 import BenefitsSection from '../components/sections/BenefitsSection.astro';
-import GallerySection from '../components/sections/GallerySection.astro';
 import CTASection from '../components/sections/CTASection.astro';
-import { benefits, gallery } from '../data/demo';
+import { photos, serviceFormats } from '../data/castro';
+import { lawyer, site } from '../config/site';
+import { primaryContactHref } from '../lib/contact';
+
+const contactHref = primaryContactHref();
 ---
 
 <BaseLayout
   title="Sobre"
-  description="Conheça a Viana Consultoria e a forma como conduzimos cada projeto de gestão e finanças."
+  description="Conheça a Castro Advocacia e a advogada Carolina Araújo. Atendimento presencial em BH e Conselheiro Lafaiete e online em todo o Brasil."
 >
   <Hero
     variant="page"
     eyebrow="Sobre"
-    title="Uma consultoria próxima, com foco no dia a dia da empresa."
-    description="Acreditamos que boa gestão começa com informação organizada e conversas francas."
+    title="Advocacia especializada, com atendimento próximo"
+    description="Soluções personalizadas e estratégicas em Direito Civil, do Consumidor, Imobiliário e do Trabalho."
   />
 
-  <AboutSection
-    id="historia"
-    eyebrow="Como trabalhamos"
-    title="Entender antes de propor."
-    paragraphs={[
-      'Cada projeto começa com uma escuta cuidadosa: quem são os sócios, como a equipe trabalha e quais decisões estão travadas.',
-      'A partir daí, propomos um caminho com etapas claras, entregas parciais e acompanhamento — sem relatórios que ficam na gaveta.',
-      'O objetivo é deixar a empresa mais autônoma: com rotinas que continuam funcionando depois que o projeto termina.',
-    ]}
-    highlights={[
-      { title: 'Atendimento', description: 'Presencial e online' },
-      { title: 'Formato', description: 'Projetos e mentorias' },
-      { title: 'Público', description: 'Pequenas e médias empresas' },
-      { title: 'Linguagem', description: 'Simples e direta' },
-    ]}
-  />
+  <Section labelledby="advogada-title">
+    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <figure class="relative lg:col-span-5">
+        <svg class="pointer-events-none absolute -top-10 -left-10 hidden w-[115%] text-primary sm:block" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+          <circle cx="200" cy="200" r="160" stroke="currentColor" stroke-opacity=".2"></circle>
+        </svg>
+        <Image
+          src={photos.profile.src}
+          alt={photos.profile.alt}
+          widths={[480, 760, 1080]}
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          class="relative aspect-[4/5] w-full rounded-t-full rounded-b-card object-cover"
+        />
+      </figure>
 
-  <BenefitsSection tone="inverted" eyebrow="Princípios" title="O que não abrimos mão" items={benefits} />
+      <div class="lg:col-span-6 lg:col-start-7">
+        <p class="mb-4 text-sm font-medium tracking-[0.08em] text-accent uppercase">{lawyer.role}</p>
+        <h2 id="advogada-title" class="text-h2">{lawyer.name}</h2>
+        {lawyer.oab && <p class="mt-2 text-muted">{lawyer.oab}</p>}
 
-  <GallerySection
-    eyebrow="Espaço"
-    title="Um ambiente pensado para boas conversas"
-    description="Use esta seção para fotos do espaço, da equipe ou do trabalho."
-    images={gallery.slice(0, 5)}
-    illustrative
-  />
+        <div class="prose-content text-lead mt-6 text-muted">
+          <p>
+            À frente da Castro Advocacia, Carolina Araújo atua em Direito Civil, do Consumidor, Imobiliário e do
+            Trabalho, além de consultoria jurídica e serviços extrajudiciais.
+          </p>
+          <p>
+            O atendimento é presencial em Belo Horizonte e Conselheiro Lafaiete e online para clientes de todo o
+            Brasil.
+          </p>
+          <p>
+            No Instagram, o escritório compartilha conteúdos informativos sobre direitos do consumidor, contratos de
+            imóveis, relações de trabalho e outras questões do dia a dia.
+          </p>
+        </div>
+
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Button href={contactHref} size="lg">Agendar atendimento</Button>
+          {
+            site.social.instagram && (
+              <Button href={site.social.instagram} size="lg" variant="secondary">
+                Instagram @castro.adv_
+              </Button>
+            )
+          }
+          {
+            site.social.linkedin && (
+              <Button href={site.social.linkedin} size="lg" variant="secondary">
+                LinkedIn
+              </Button>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <BenefitsSection tone="muted" id="formatos" eyebrow="Atendimento" title="Onde e como atendemos" items={serviceFormats} />
 
   <CTASection
-    variant="card"
-    title="Quer saber se a consultoria faz sentido para você?"
-    description="Conte um pouco sobre a sua empresa e indicamos o melhor formato."
-    primaryCta={{ label: 'Falar com a consultoria', href: '/contato' }}
+    title="Vamos conversar sobre o seu caso?"
+    description="Agende um atendimento presencial ou online."
+    primaryCta={{ label: 'Agendar atendimento', href: contactHref }}
+    secondaryCta={{ label: 'Áreas de atuação', href: '/areas' }}
   />
 </BaseLayout>

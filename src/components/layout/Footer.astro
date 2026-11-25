@@ -17,8 +17,9 @@ const hasContact = Boolean(wa || tel || mail || address || site.contact.hours);
 <footer class="border-t border-inverted-ink/15 bg-inverted text-inverted-ink">
   <div class="container-page grid gap-12 py-16 md:grid-cols-12 lg:py-20">
     <div class="md:col-span-5">
-      <a href="/" aria-label={`${site.name} — página inicial`} class="inline-block">
+      <a href="/" class="inline-block">
         <Logo inverted />
+        <span class="sr-only"> — página inicial</span>
       </a>
       <p class="mt-5 max-w-sm text-inverted-ink/80">{site.description}</p>
       {
